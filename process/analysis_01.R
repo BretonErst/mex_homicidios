@@ -12,7 +12,7 @@ library(ggtext)
 
 
 ## Source
-suppressWarnings(source("data/cleaned_data.R")) 
+suppressWarnings(source("data/cleaned_data_files.R")) 
 
 
 ## Gráfica de calor
@@ -57,7 +57,7 @@ be01 +
              size = 3, color = "darkgrey") +
   guides(alpha = guide_legend("Inicio de Sexenio", 
                               label = FALSE,
-                              title.vjust =  -0.01)) -> be02
+                              title.vjust =  -0.01)) #-> be02
 
   
 ggsave(filename = "be02", plot = be02, path = "graficas", device = "tiff")
