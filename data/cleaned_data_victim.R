@@ -15,7 +15,7 @@ library(lubridate)
 df_00 <- read_csv("raw/IDVFC_NM_mar22.csv")
 
 
-#glimpse(df_00)
+glimpse(df_00)
 
 
 ## Limpieza de datos para HOMICIDIO DOLOSO
