@@ -41,10 +41,10 @@ df_05 %>%
         axis.line = element_blank(),
         axis.ticks = element_blank()) +
   labs(title = "Evolución de la Violencia Homicida en México",
-       subtitle = "Víctimas de homicidos dolosos acumuladas por mes en cada Entidad Federativa, de enero de 2016 a junio de 2022.",
+       subtitle = "Víctimas de homicidos dolosos acumuladas por mes en cada Entidad Federativa, de enero de 2016 a julio de 2022.",
        x = NULL,
        y = NULL,
-       caption = "Fuente: Reportes de Incidencia Delictiva al mes de junio
+       caption = "Fuente: Reportes de Incidencia Delictiva al mes de julio
          2022; Gobierno de México.<br>
          Visualización: Juan L. Bretón, PMP | @BretonPmp",
        fill = "Víctimas de Homicidios por Mes") +
