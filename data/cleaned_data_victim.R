@@ -12,7 +12,8 @@ library(lubridate)
 
 
 ## Adquisición de datos
-df_00 <- read_csv("raw/IDVFC_NM_mar22.csv")
+df_00 <- read_csv("raw/IDVFC_NM_jun22.csv",
+                  locale = locale(encoding = "latin1"))
 
 
 glimpse(df_00)
@@ -22,14 +23,14 @@ glimpse(df_00)
 df_01 <- df_00 %>%
   filter(`Tipo de delito` == "Homicidio",
          `Subtipo de delito` == "Homicidio doloso") %>% 
-  select(-`Bien jurÌdico afectado`,
+  select(-`Bien jurídico afectado`,
          - `Tipo de delito`,
          -`Subtipo de delito`) %>%
   janitor::clean_names() %>% 
   mutate(clave_ent = as.factor(clave_ent),
          entidad = as.factor(entidad),
          modalidad = as.factor(modalidad)) %>% 
-  select(año = a_oo,
+  select(año = ano,
          everything())
 
 #glimpse(df_01)
