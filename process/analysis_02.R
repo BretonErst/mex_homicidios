@@ -57,7 +57,7 @@ be03 +
              size = 3, color = "darkgrey") +
   guides(alpha = guide_legend("Inicio de Sexenio", 
                               label = FALSE,
-                              title.vjust =  -0.01)) -> be03
+                              title.vjust =  -0.01)) #-> be03
 
 
-ggsave(filename = "be03", plot = be03, path = "graficas", device = "tiff")
+# ggsave(filename = "be03", plot = be03, path = "graficas", device = "tiff")
