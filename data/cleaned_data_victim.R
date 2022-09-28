@@ -123,3 +123,4 @@ df_05 <- df_04 %>%
   mutate(fecha = as_date(paste(año, num_mes, 1, sep = "-")))
 
 
+rm(df_00, df_01, df_02, df_03, df_04)
