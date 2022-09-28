@@ -16,15 +16,13 @@ library(slider)
 suppressWarnings(source("data/cleaned_data_victim_municipios.R")) 
 
 
+
 ## Gráfica de calor
 df_mun_04 %>%
   filter(año > 2015) %>%
   na.omit() %>% 
-  mutate(estado = factor(municipio, 
-                         levels = rev(sort(unique(municipio)))),
-         texto = paste0(municipio, "\n",
-                        año, mes, "\n",
-                        homicidios)) %>%
+  mutate(municipio = factor(municipio,
+                            levels = rev(sort(unique(municipio))))) %>%
   ggplot(aes(x = fecha,
              y = municipio, 
              fill = homicidios)) +
@@ -65,3 +63,6 @@ mune03 +
   guides(alpha = guide_legend("Inicio de Sexenio", 
                               label = FALSE,
                               title.vjust =  -0.01)) #-> be03
+
+
+
