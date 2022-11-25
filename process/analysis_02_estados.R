@@ -47,7 +47,7 @@ df_05 %>%
           axis.line = element_blank(),
           axis.ticks = element_blank()) +
     labs(title = "Patrones de la Violencia Homicida en México",
-         subtitle = "Víctimas de homicidos dolosos acumuladas por mes en cada Entidad Federativa, de enero de 2016 a septiembre de 2022.",
+         subtitle = "Víctimas de homicidos dolosos acumuladas por mes en cada Entidad Federativa, de enero de 2016 a octubre de 2022.",
          x = NULL,
          y = NULL,
          caption = "Fuente: Reportes de Incidencia Delictiva
@@ -60,7 +60,7 @@ df_05 %>%
 be03 +
   geom_vline(aes(xintercept = as_date("2018-12-01"), 
                  alpha = 0.15), 
-             size = 3, 
+             linewidth = 3, 
              color = "darkgrey") +
   guides(alpha = guide_legend("Inicio de Sexenio", 
                               label = FALSE,
