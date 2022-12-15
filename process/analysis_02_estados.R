@@ -31,7 +31,7 @@ df_05 %>%
     geom_tile(color = "grey70", 
               alpha = 0.85) +
     scale_fill_gradient(low = "#FFFFFF", 
-                        high = "#FF0000",
+                        high = "#C0392B",
                         expand = c(0,0)) +
     theme(text = element_text(family = "Encode Sans Condensed"),
           plot.caption = element_markdown(color = "grey45", hjust = 0),
