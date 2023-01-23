@@ -92,7 +92,6 @@ nal_tasa <- df_05 %>%
   mutate(tasa_mes = homicidios / pob * 1e5) %>% 
   select(-año)
 
-
 # visualización
 nal_tasa %>% 
   na.omit() %>% 
@@ -169,12 +168,13 @@ nal_mapa_2022 %>%
          subtitle = "Víctimas de homicidio por 100,000 habitantes en 2022",
          caption = "Fuente: Reportes de Incidencia Delictiva
              2022; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
-             Gobierno de México.<br>
+             Gobierno de México. INEGI, Censo de población y vivienda 2020.<br>
              Visualización: Juan L. Bretón, PMP | @BretonPmp") +
     scale_fill_gradient(name = "Tasa de\nvíctimas", 
                         low = "#FFFFFF",
                         high = "#C0392B")
 
+ggsave(filename = "graficas/mex_nal_01.jpg", device = "jpeg", dpi = "retina")
 
 # slider
 valores_medios <- df_05 %>% 
