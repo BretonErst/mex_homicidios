@@ -78,7 +78,7 @@ gto_municip <- readxl::read_excel("raw/pob_mex.xlsx",
          municipio, 
          habitantes_2020)
 
-# archivo de datos original
+# integrar columna de población con archivo de datos original
 df_gto_tasa <- df_mun_04 %>% 
   filter(año > 2019) %>% 
   left_join(gto_municip, by = c("cve_municipio" = "CVEGEO")) %>% 
