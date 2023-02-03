@@ -46,7 +46,7 @@ df_mun_04 %>%
         axis.line = element_blank(),
         axis.ticks = element_blank()) +
   labs(title = "Patrones de la Violencia Homicida en Guanajuato",
-       subtitle = "Víctimas de homicidos dolosos acumuladas por mes en cada Municipio, de enero de 2016 a noviembre de 2022.",
+       subtitle = "Víctimas de homicidos dolosos acumuladas por mes en cada Municipio, de enero de 2016 a diciembre de 2022.",
        x = NULL,
        y = NULL,
        caption = "Fuente: Reportes de Incidencia Delictiva
