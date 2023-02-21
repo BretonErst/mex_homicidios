@@ -131,17 +131,30 @@ nal_tasa %>%
     scale_x_date(expand = c(0, 0))
 
 
+## datos de población 2022
+pob_2022 <- readxl::read_xlsx("raw/mex_pob2022.xlsx") %>% 
+  janitor::clean_names() %>% 
+  mutate(estado = str_to_upper(estado))
+
+nal_tasa_ult <- df_05 %>% 
+  filter(año > 2019) %>% 
+  left_join(pob_2022, by = "estado")
+
+
 ## mapa por tasa 2022
 # carga de archivo shape
 nal_mapa <- st_read("conjunto_de_datos/nal/00ent.shp")
 
-# summarize para total año 2020
-nal_tasa_2022 <- nal_tasa %>% 
+# summarize para total año 2022
+nal_tasa_2022 <- nal_tasa_ult %>% 
   filter(fecha >= "2022-01-01") %>% 
-  group_by(id_entidad, estado, pob) %>% 
+  group_by(id_entidad, estado, pob2022) %>% 
   summarize(total_2022 = sum(homicidios, na.rm = TRUE)) %>% 
-  mutate(tasa_2022 = total_2022 / pob * 1e5) %>% 
-  select(-c(pob, total_2022))
+  mutate(tasa_2022 = total_2022 / pob2022 * 1e5) %>% 
+  select(-c(pob2022, total_2022))
+
+val_limite <- round(c(min(nal_tasa_2022$tasa_2022), 
+                      max(nal_tasa_2022$tasa_2022)), digits = 1)
 
 # unir con el archivo shape
 nal_mapa_2022 <- nal_mapa %>% 
@@ -163,16 +176,23 @@ nal_mapa_2022 %>%
           plot.caption = element_markdown(color = "darkgrey",
                                           hjust = 0),
           plot.title.position = "plot",
-          plot.caption.position = "plot",) +
-    labs(title = "Patrones de Violencia Homicida",
-         subtitle = "Víctimas de homicidio por 100,000 habitantes en 2022",
+          plot.caption.position = "plot") +
+    labs(title = "¿En Qué Entidades Ocurrieron Relativamente Más Homidicios?",
+         subtitle = "Víctimas de homicidio por cada 100,000 habitantes registradas en el año 2022",
          caption = "Fuente: Reportes de Incidencia Delictiva
              2022; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
-             Gobierno de México. INEGI, Censo de población y vivienda 2020.<br>
+             Gobierno de México. Estimación de población de la ENOE, INEGI.<br>
              Visualización: Juan L. Bretón, PMP | @BretonPmp") +
-    scale_fill_gradient(name = "Tasa de\nvíctimas", 
+    scale_fill_gradient(name = "Tasa de\nvíctimas por\n 100,000 habs", 
                         low = "#FFFFFF",
-                        high = "#C0392B")
+                        high = "#7B0303",
+                        limits = val_limite,
+                        breaks = round(seq(val_limite[1],
+                                           val_limite[2],
+                                           length.out = 5),
+                                       digits = 1))
+
+
 
 ggsave(filename = "graficas/mex_nal_01.jpg", device = "jpeg", dpi = "retina")
 
