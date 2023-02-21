@@ -137,7 +137,7 @@ pob_2022 <- readxl::read_xlsx("raw/mex_pob2022.xlsx") %>%
   mutate(estado = str_to_upper(estado))
 
 nal_tasa_ult <- df_05 %>% 
-  filter(año > 2019) %>% 
+  filter(año > 2021) %>% 
   left_join(pob_2022, by = "estado")
 
 
@@ -153,8 +153,10 @@ nal_tasa_2022 <- nal_tasa_ult %>%
   mutate(tasa_2022 = total_2022 / pob2022 * 1e5) %>% 
   select(-c(pob2022, total_2022))
 
+# mínimo y máximo
 val_limite <- round(c(min(nal_tasa_2022$tasa_2022), 
-                      max(nal_tasa_2022$tasa_2022)), digits = 1)
+                      max(nal_tasa_2022$tasa_2022)), 
+                    digits = 1)
 
 # unir con el archivo shape
 nal_mapa_2022 <- nal_mapa %>% 
