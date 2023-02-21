@@ -32,7 +32,7 @@ df_05 %>%
     geom_tile(color = "grey70", 
               alpha = 0.85) +
     scale_fill_gradient(low = "#FFFFFF", 
-                        high = "#C0392B",
+                        high = "#7B0303",
                         expand = c(0,0)) +
     theme(text = element_text(family = "Encode Sans Condensed"),
           plot.caption = element_markdown(color = "grey45", hjust = 0),
@@ -103,7 +103,7 @@ nal_tasa %>%
     geom_tile(color = "grey70", 
               alpha = 0.85) +
     scale_fill_gradient(low = "#FFFFFF", 
-                        high = "#C0392B",
+                        high = "#7B0303",
                         expand = c(0,0)) +
     theme(text = element_text(family = "Encode Sans Condensed"),
           plot.caption = element_markdown(color = "grey45", hjust = 0),
@@ -151,7 +151,11 @@ nal_tasa_2022 <- nal_tasa_ult %>%
   group_by(id_entidad, estado, pob2022) %>% 
   summarize(total_2022 = sum(homicidios, na.rm = TRUE)) %>% 
   mutate(tasa_2022 = total_2022 / pob2022 * 1e5) %>% 
+  ungroup() %>% 
   select(-c(pob2022, total_2022))
+
+nal_tasa_2022 %>% 
+  summarize(media = mean(tasa_2022))
 
 # mínimo y máximo
 val_limite <- round(c(min(nal_tasa_2022$tasa_2022), 
@@ -179,13 +183,13 @@ nal_mapa_2022 %>%
                                           hjust = 0),
           plot.title.position = "plot",
           plot.caption.position = "plot") +
-    labs(title = "¿En Qué Entidades Ocurrieron Relativamente Más Homidicios?",
+    labs(title = "¿En Qué Entidades Ocurrieron Proporcionalmente Más Homidicios?",
          subtitle = "Víctimas de homicidio por cada 100,000 habitantes registradas en el año 2022",
          caption = "Fuente: Reportes de Incidencia Delictiva
              2022; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
              Gobierno de México. Estimación de población de la ENOE, INEGI.<br>
              Visualización: Juan L. Bretón, PMP | @BretonPmp") +
-    scale_fill_gradient(name = "Tasa de\nvíctimas por\n 100,000 habs", 
+    scale_fill_gradient(name = "Tasa de\nvíctimas por\n100,000 habs", 
                         low = "#FFFFFF",
                         high = "#7B0303",
                         limits = val_limite,
