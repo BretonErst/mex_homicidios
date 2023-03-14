@@ -48,11 +48,11 @@ df_05 %>%
           axis.line = element_blank(),
           axis.ticks = element_blank()) +
     labs(title = "Patrones de la Violencia Homicida en México",
-         subtitle = "Víctimas de homicidos dolosos acumuladas por mes en cada Entidad Federativa, de enero de 2016 a diciembre de 2022.",
+         subtitle = "Víctimas de homicidos dolosos acumuladas por mes en cada Entidad Federativa, de enero de 2016 a enero de 2023.",
          x = NULL,
          y = NULL,
          caption = "Fuente: Reportes de Incidencia Delictiva
-           2022; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
+           2023; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
            Gobierno de México.<br>
            Visualización: Juan L. Bretón, PMP | @BretonPmp",
          fill = "Víctimas de Homicidios por Mes") +
@@ -71,7 +71,7 @@ be03 +
 
 # plotly::ggplotly(be03, tooltip = "texto")
 
-# ggsave(filename = "be03", plot = be03, path = "graficas", device = "tiff")
+ggsave(filename = "graficas/be03.jpg", device = "jpeg", dpi = "retina")
 
 
 ## gráfica de calor por tasas
@@ -123,7 +123,7 @@ nal_tasa %>%
          x = NULL,
          y = NULL,
          caption = "Fuente: Reportes de Incidencia Delictiva
-             2022; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
+             2023; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
              Gobierno de México. INEGI, Censo de Población y Vivienda 2020<br>
              Visualización: Juan L. Bretón, PMP | @BretonPmp",
          fill = "Proporción de víctimas respecto a la población") +
@@ -186,7 +186,7 @@ nal_mapa_2022 %>%
     labs(title = "¿En Qué Entidades Ocurrieron Proporcionalmente Más Homidicios?",
          subtitle = "Víctimas de homicidio por cada 100,000 habitantes registradas en el año 2022",
          caption = "Fuente: Reportes de Incidencia Delictiva
-             2022; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
+             2023; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
              Gobierno de México. Estimación de población de la ENOE, INEGI.<br>
              Visualización: Juan L. Bretón, PMP | @BretonPmp") +
     scale_fill_gradient(name = "Tasa de\nvíctimas por\n100,000 habs", 
