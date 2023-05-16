@@ -48,7 +48,7 @@ df_05 %>%
           axis.line = element_blank(),
           axis.ticks = element_blank()) +
     labs(title = "Patrones de la Violencia Homicida en México",
-         subtitle = "Víctimas de homicidos dolosos acumuladas por mes en cada Entidad Federativa, de enero de 2016 a enero de 2023.",
+         subtitle = "Víctimas de homicidos dolosos acumuladas por mes en cada Entidad Federativa, de enero de 2016 a abril de 2023.",
          x = NULL,
          y = NULL,
          caption = "Fuente: Reportes de Incidencia Delictiva
@@ -158,9 +158,8 @@ nal_tasa_2022 %>%
   summarize(media = mean(tasa_2022))
 
 # mínimo y máximo
-val_limite <- round(c(min(nal_tasa_2022$tasa_2022), 
-                      max(nal_tasa_2022$tasa_2022)), 
-                    digits = 1)
+val_limite <- c(min(nal_tasa_2022$tasa_2022), 
+                      max(nal_tasa_2022$tasa_2022))
 
 # unir con el archivo shape
 nal_mapa_2022 <- nal_mapa %>% 
