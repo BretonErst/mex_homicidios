@@ -17,6 +17,7 @@ library(slider)
 suppressWarnings(source("data/cleaned_data_victim.R")) 
 
 
+
 ## Gráfica de calor
 df_05 %>%
   filter(año > 2015) %>%
@@ -48,13 +49,13 @@ df_05 %>%
           axis.line = element_blank(),
           axis.ticks = element_blank()) +
     labs(title = "Patrones de la Violencia Homicida en México",
-         subtitle = "Víctimas de homicidos dolosos acumuladas por mes en cada Entidad Federativa, de enero de 2016 a abril de 2023.",
+         subtitle = "Víctimas de homicidios dolosos acumuladas cada mes por Entidad Federativa, de enero de 2016 a abril de 2023.",
          x = NULL,
          y = NULL,
          caption = "Fuente: Reportes de Incidencia Delictiva
            2023; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
            Gobierno de México.<br>
-           Visualización: Juan L. Bretón, PMP | @BretonPmp",
+           Visualización: Juan L. Bretón, PMP | @jluisbreton",
          fill = "Víctimas de Homicidios por Mes") +
     scale_y_discrete(expand = c(0, 0)) +
     scale_x_date(expand = c(0, 0)) -> be03
