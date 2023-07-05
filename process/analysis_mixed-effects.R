@@ -210,6 +210,66 @@ slope_estados %>%
                       high = "#7B0303")
 
 
+## map showing change YTY
+# latest month in record
+last_reg <- 
+  max(df_07$mes_sexenio)
+
+# aggregated homicides per state last 12 months
+cuenta_presente <- 
+  df_07 %>% 
+  filter(mes_sexenio <= last_reg & mes_sexenio >= last_reg - 12) %>% 
+  group_by(id_entidad) %>% 
+  summarize(homicidios_presente = sum(homicidios))
+
+# aggregated homicides per state previos 12 months
+cuenta_base <- 
+  df_07 %>% 
+  filter(mes_sexenio <= last_reg - 12 & mes_sexenio >= last_reg - 24) %>% 
+  group_by(id_entidad) %>% 
+  summarize(homicidios_base = sum(homicidios))
+
+# change last 12 months
+cambio <- 
+  cuenta_base %>% 
+  left_join(cuenta_presente, by = "id_entidad") %>% 
+  mutate(pct_cambio = (homicidios_presente - homicidios_base) / homicidios_base)
+
+# join with shape file
+cambio_mapa <- 
+  mapa_estados %>% 
+  left_join(cambio, by = c("CVEGEO" = "id_entidad"))
+
+# map of change YTY
+cambio_mapa %>% 
+  ggplot(aes(fill = pct_cambio)) +
+  geom_sf(color = "grey60",
+          size = 0.7) +
+  theme(text = element_text(family = "Encode Sans Condensed"),
+        plot.title = element_text(face = "bold", 
+                                  size = 16),
+        panel.background = element_rect(fill = "#FFFFFF"),
+        panel.grid = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.line = element_blank(),
+        plot.caption = element_markdown(color = "darkgrey",
+                                        hjust = 0),
+        plot.title.position = "plot",
+        plot.caption.position = "plot") +
+  labs(title = "Cambio en el Acumulado de Homicidios de los Últimos 12 Meses",
+       subtitle = "Por entidad federativa",
+       caption = "Fuente: Reportes de Incidencia Delictiva
+             2023; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
+             Gobierno de México.<br>
+             Visualización: Juan L. Bretón, PMP | @juanlbreton") +
+  scale_fill_gradient2(name = "Magnitud\n del cambio", 
+                       low = "darkgreen",
+                       mid = "#F0F0F0",
+                       high = "#7B0303")
+
+
+
 
 
 
