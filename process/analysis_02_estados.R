@@ -49,7 +49,7 @@ df_05 %>%
           axis.line = element_blank(),
           axis.ticks = element_blank()) +
     labs(title = "Patrones de la Violencia Homicida en México",
-         subtitle = "Víctimas de homicidios dolosos acumuladas cada mes por Entidad Federativa, de enero de 2016 a mayo de 2023.",
+         subtitle = "Víctimas de homicidios dolosos acumuladas cada mes por Entidad Federativa, de enero de 2016 a octubre de 2023.",
          x = NULL,
          y = NULL,
          caption = "Fuente: Reportes de Incidencia Delictiva
@@ -67,7 +67,7 @@ be03 +
              color = "darkgrey") +
   guides(alpha = guide_legend("Inicio de Sexenio", 
                               label = FALSE,
-                              title.vjust =  -0.01)) #-> be03
+                              title.vjust =  -0.01)) # -> be03
 
 
 # plotly::ggplotly(be03, tooltip = "texto")
