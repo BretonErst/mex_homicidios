@@ -19,7 +19,7 @@ suppressWarnings(source("data/cleaned_data_victim.R"))
 df_06 <- 
   df_05 %>% 
   select(rowid, id_entidad, año, num_mes, mes, fecha, estado, homicidios) %>% 
-  filter(fecha > as_date("2016-01-01")) %>%
+  filter(fecha > as_date("2018-12-01")) %>%
   drop_na(homicidios) %>% 
   nest(data = -estado)
 
@@ -54,9 +54,10 @@ df_07 %>%
     geom_smooth(method = "glm",
                 method.args = c("poisson"),
                 se = FALSE, 
-                linewidth = 0.28) +
+                linewidth = 0.28,
+                color = "darkred") +
     labs(title = "Comportamiento del Número de Homicidios Dolosos durante el Sexenio",
-         subtitle = "Cifras mensuales. La línea azul representa la tendencia simple.",
+         subtitle = "Cifras mensuales por estado. La línea roja representa la tendencia simple.",
          x = "Mes del sexenio",
          y = "Víctimas de homicidio doloso por mes",
          caption = "Fuente: Reportes de Incidencia Delictiva
@@ -147,14 +148,14 @@ estado_slope_fill %>%
                    xend = slope,
                    yend = fct_reorder(estado, slope)),
                alpha = 0.65) +
-  labs(title = "Tendencias por Entidad",
-       subtitle = "GLM",
+  labs(title = "Cambio en la Tendencia de Ocurrencia de Homicidios Dolosos",
+       subtitle = "Datos de dicembre de 2018 a noviembre 2023",
        y = NULL,
-       x = "Profundidad de la tendencia",
+       x = "Tasa de cambio en la tendencia",
        caption = "Fuente: Reportes de Incidencia Delictiva
            2023; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
            Gobierno de México.<br>
-           Visualización: Juan L. Bretón, PMP | @juanlbreton") +
+           Modelaje y visualización: Juan L. Bretón, PMP | @juanlbreton") +
   scale_color_manual(name = "Orientación de la tendencia",
                     values = c("darkcyan", "darkred"),
                     labels = c("Decrece",
@@ -170,6 +171,8 @@ estado_slope_fill %>%
         plot.caption = element_markdown(color = "darkgrey", 
                                         hjust = 0),
         legend.position = "top") 
+
+ggsave(filename = "graficas/mixed_01.jpg", device = "jpeg", dpi = "retina")
 
 
 # shape file for states
