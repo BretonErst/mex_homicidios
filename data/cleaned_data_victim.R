@@ -12,7 +12,7 @@ library(lubridate)
 
 
 ## Adquisición de datos
-df_00 <- read_csv("raw/IDVFC_NM_oct23.csv",
+df_00 <- read_csv("raw/IDVFC_NM_nov23.csv",
                   locale = locale(encoding = "latin1"))
 
 
