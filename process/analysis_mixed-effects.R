@@ -149,11 +149,11 @@ estado_slope_fill %>%
                    yend = fct_reorder(estado, slope)),
                alpha = 0.65) +
   labs(title = "Cambio en la Tendencia de Ocurrencia de Homicidios Dolosos",
-       subtitle = "Datos de dicembre de 2018 a noviembre 2023",
+       subtitle = "Datos de dicembre de 2018 a abril 2024",
        y = NULL,
        x = "Tasa de cambio en la tendencia",
        caption = "Fuente: Reportes de Incidencia Delictiva
-           2023; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
+           2024; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
            Gobierno de México.<br>
            Modelaje y visualización: Juan L. Bretón, PMP | @juanlbreton") +
   scale_color_manual(name = "Orientación de la tendencia",
@@ -263,7 +263,7 @@ cambio_mapa %>%
   labs(title = "Cambio en el Acumulado de Homicidios de los Últimos 12 Meses",
        subtitle = "Por entidad federativa",
        caption = "Fuente: Reportes de Incidencia Delictiva
-             2023; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
+             2024; Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública, 
              Gobierno de México.<br>
              Visualización: Juan L. Bretón, PMP | @juanlbreton") +
   scale_fill_gradient2(name = "Magnitud\n del cambio", 
